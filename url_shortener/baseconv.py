@@ -8,7 +8,7 @@ class BaseConverter:
     Convert integer to any base
 
     >>> import string
-    >>> BaseConverter(string.printable[:16]).encode(0xDEADBEEF)
+    >>> BaseConverter(string.hexdigits[:16]).encode(0xDEADBEEF)
     'deadbeef'
     """
 
