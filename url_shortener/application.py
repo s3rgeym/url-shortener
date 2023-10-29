@@ -58,7 +58,7 @@ app = FastAPI(default_response_class=PlainTextResponse, lifespan=lifespan)
 
 @app.get("/")
 async def show_banner(request: Request) -> str:
-    return BANNER.format(base_url=request.base_url)
+    return BANNER.strip('\n').format(base_url=request.base_url)
 
 
 @app.post("/")
