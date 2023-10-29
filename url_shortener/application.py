@@ -1,3 +1,5 @@
+import string
+import uuid
 from contextlib import asynccontextmanager
 from typing import Annotated
 from urllib.parse import urljoin
@@ -6,7 +8,7 @@ import asyncpg
 from fastapi import FastAPI, Form, Request, Response
 from fastapi.responses import PlainTextResponse, RedirectResponse
 
-from . import base62
+from .baseconv import BaseConverter
 from .config import settings
 
 BANNER = r"""
@@ -23,6 +25,8 @@ Usage:
     curl -d'url=<url>' {base_url}
     command | curl -F'url=<-' {base_url}
 """
+
+base66 = BaseConverter(string.printable[:62] + "-._~")
 
 
 @asynccontextmanager
@@ -69,23 +73,27 @@ async def create_short_url(
                 INSERT INTO urls ("url") VALUES ($1)
                 ON CONFLICT ("url") DO NOTHING
                 RETURNING id
-            ) 
-            SELECT * FROM inserted
-            UNION 
-            SELECT id FROM urls WHERE url=$1;
+            ) SELECT * FROM inserted UNION SELECT id FROM urls WHERE url=$1;
             """,
             url,
         )
         return urljoin(
             request.base_url._url,
-            app.url_path_for("resolve_short_url", short_code=base62.encode(rv)),
+            app.url_path_for(
+                "resolve_short_url", short_code=base66.encode(rv.int)
+            ),
         )
 
 
 @app.get("/{short_code}")
 async def resolve_short_url(short_code: str) -> Response:
-    if rv := await app.pool.fetchval(
-        "SELECT url FROM urls WHERE id=$1", base62.decode(short_code)
-    ):
-        return RedirectResponse(url=rv, status_code=302)
+    try:
+        if rv := await app.pool.fetchval(
+            "SELECT url FROM urls WHERE id=$1",
+            uuid.UUID(int=base66.decode(short_code)),
+        ):
+            return RedirectResponse(url=rv, status_code=302)
+    # ValueError: int is out of range (need a 128-bit value)
+    except ValueError:
+        pass
     return Response("URL Not Found", status_code=404)
