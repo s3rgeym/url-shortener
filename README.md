@@ -24,7 +24,7 @@ http://localhost:8000/2p9FrNxptFpbhRR5ovpcGw
 | URL | Service |
 | --- | --- |
 | <http://localhost:8000/> | URL Shortener |
-| <http://localhost:8000/docs> | Documemtation |
+| <http://localhost:8000/docs> | Documentation |
 | <http://localhost:5050/> | pgAdmin. Default credentials: `pgadmin4@pgadmin.org:admin` |
 
 ![image](https://user-images.githubusercontent.com/12753171/278843106-a24e55bd-5c6f-4b60-b1b9-d188e7562d3c.png)
