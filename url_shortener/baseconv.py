@@ -40,12 +40,13 @@ class BaseConverter:
         return rv
 
 
-# for i in (36, 58, 62):
+# for i in (36, 62):
 #     globals()[f"base{i}"] = BaseConverter(string.printable[:i])
 
 # Лучше явно указать, тк иначе IDE не видит
 base36 = BaseConverter(string.printable[:36])
-base58 = BaseConverter(string.printable[:58])
+# Вариант для Bitcoin-адресов
+base58 = BaseConverter("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
 base62 = BaseConverter(string.printable[:62])
 
 if __name__ == "__main__":
