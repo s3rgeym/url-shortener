@@ -10,7 +10,7 @@ Launch compose:
 docker compose up -d
 ```
 
-Then `F5` > `Python: Remote Attach` for Debugging.
+Then `F5` > `Python: Remote Attach` for Debugging. The application will start only after the debugger. This is a development template.
 
 Code changes will take effect immediately.
 
