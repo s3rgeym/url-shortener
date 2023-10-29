@@ -1,8 +1,9 @@
+import string
 from dataclasses import dataclass
 from functools import cached_property
 
 
-@dataclass(frozen=True)
+@dataclass
 class BaseConverter:
     """
     Convert integer to any base
@@ -14,6 +15,7 @@ class BaseConverter:
 
     alphabet: str
 
+    # Если alphabet изменится, то alhabet_len тоже поменяется
     @cached_property
     def alphabet_len(self) -> int:
         return len(self.alphabet)
@@ -34,7 +36,23 @@ class BaseConverter:
         return rv
 
 
+@dataclass
+class Base36Converter(BaseConverter):
+    alphabet: str = string.printable[:36]
+
+
+@dataclass
+class Base58Converter(BaseConverter):
+    alphabet: str = string.printable[:58]
+
+
+@dataclass
+class Base62Converter(BaseConverter):
+    alphabet: str = string.printable[:62]
+
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    c = Base58Converter()
