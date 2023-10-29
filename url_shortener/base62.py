@@ -1,7 +1,7 @@
 import string
 import uuid
 
-# Возможно, тоило бы использовать base66+ (можно дополнительно использовать: "~", "-", "_", ".")
+# Возможно, стоило бы использовать base66 (можно дополнительно использовать: "~", "-", "_", ".")
 BASE62 = string.digits + string.ascii_lowercase + string.ascii_uppercase
 BASE62_LEN = len(BASE62)
 assert BASE62_LEN == 62
