@@ -69,3 +69,4 @@ Links:
 * <https://github.com/tiangolo/full-stack-fastapi-postgresql/issues/337>
 * <https://lightrun.com/answers/tiangolo-fastapi-question-how-to-setup-a-remote-debugger-with-vscode>
 * <https://github.com/tiangolo/fastapi/issues/707#issuecomment-760581929>
+* <https://code.visualstudio.com/docs/containers/debug-python>
