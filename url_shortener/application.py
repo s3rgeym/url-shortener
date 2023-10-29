@@ -53,7 +53,7 @@ app = FastAPI(default_response_class=PlainTextResponse, lifespan=lifespan)
 
 
 @app.get("/")
-async def index(request: Request) -> str:
+async def show_banner(request: Request) -> str:
     return BANNER.format(base_url=request.base_url)
 
 
@@ -66,12 +66,13 @@ async def create_short_url(
         rv = await conn.fetchval(
             """
             WITH inserted AS (
-                INSERT INTO urls ("url")
-                    VALUES ($1)
-                ON CONFLICT ("url")
-                DO NOTHING
+                INSERT INTO urls ("url") VALUES ($1)
+                ON CONFLICT ("url") DO NOTHING
                 RETURNING id
-            ) SELECT * FROM inserted UNION SELECT id FROM urls WHERE url=$1;
+            ) 
+            SELECT * FROM inserted
+            UNION 
+            SELECT id FROM urls WHERE url=$1;
             """,
             url,
         )
