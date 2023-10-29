@@ -55,4 +55,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    c = Base58Converter()
