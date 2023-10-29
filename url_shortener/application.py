@@ -1,4 +1,3 @@
-import string
 import uuid
 from contextlib import asynccontextmanager
 from typing import Annotated
@@ -8,7 +7,7 @@ import asyncpg
 from fastapi import FastAPI, Form, Request, Response
 from fastapi.responses import PlainTextResponse, RedirectResponse
 
-from .baseconv import BaseConverter
+from .baseconv import BaseConverter, base62
 from .config import settings
 
 BANNER = r"""
@@ -26,7 +25,7 @@ Usage:
     command | curl -F'url=<-' {base_url}
 """
 
-base66 = BaseConverter(string.printable[:62] + "-._~")
+base66 = BaseConverter(base62.alphabet + "-._~")
 
 
 @asynccontextmanager
@@ -58,7 +57,7 @@ app = FastAPI(default_response_class=PlainTextResponse, lifespan=lifespan)
 
 @app.get("/")
 async def show_banner(request: Request) -> str:
-    return BANNER.strip('\n').format(base_url=request.base_url)
+    return BANNER.strip("\n").format(base_url=request.base_url)
 
 
 @app.post("/")
