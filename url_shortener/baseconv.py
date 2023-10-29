@@ -2,6 +2,8 @@ import string
 from dataclasses import dataclass
 from functools import cached_property
 
+__all__: tuple[str, ...] = ("BaseConverter", "base36", "base58", "base62")
+
 
 @dataclass
 class BaseConverter:
@@ -36,19 +38,8 @@ class BaseConverter:
         return rv
 
 
-@dataclass
-class Base36Converter(BaseConverter):
-    alphabet: str = string.printable[:36]
-
-
-@dataclass
-class Base58Converter(BaseConverter):
-    alphabet: str = string.printable[:58]
-
-
-@dataclass
-class Base62Converter(BaseConverter):
-    alphabet: str = string.printable[:62]
+for i in (36, 58, 62):
+    globals()[f"base{i}"] = BaseConverter(string.printable[:i])
 
 
 if __name__ == "__main__":
