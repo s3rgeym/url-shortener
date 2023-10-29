@@ -29,16 +29,30 @@ http://localhost:8000/2p9FrNxptFpbhRR5ovpcGw
 
 ![image](https://user-images.githubusercontent.com/12753171/278843106-a24e55bd-5c6f-4b60-b1b9-d188e7562d3c.png)
 
-Stop:
+Add new dependency:
 
 ```bash
-docker compose down
+# at host
+poetry add whatever
+
+# rebuild service
+docker compose up -d --build --force-recreate --no-deps url_shortener
+
+# or you can enter into container and add dependency
+docker compose exec url_shortener sh
+(inside container) poetry add whatever
 ```
 
 Follow logs:
 
 ```bash
 docker compose logs -f url_shortener
+```
+
+Stop:
+
+```bash
+docker compose down
 ```
 
 Delete all data:
