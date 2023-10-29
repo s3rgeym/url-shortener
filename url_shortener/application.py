@@ -16,6 +16,8 @@ BANNER = r"""
 | |_| |  _ <| |___   ___) | | | | (_) | |  | ||  __/ | | |  __/ |
  \___/|_| \_\_____| |____/|_| |_|\___/|_|   \__\___|_| |_|\___|_|
 
+Create short urls from the terminal.
+
 Usage:
 
     curl -d'url=<url>' {base_url}
