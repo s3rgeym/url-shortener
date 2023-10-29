@@ -8,8 +8,8 @@ class BaseConverter:
     Convert integer to any base
 
     >>> import string
-    >>> BaseConverter(string.printable[:36]).encode(123456)
-    '2n9c'
+    >>> BaseConverter(string.printable[:36]).encode(0xDEADBEEF)
+    '1ps9wxb'
     """
 
     alphabet: str
