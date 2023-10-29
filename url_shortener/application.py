@@ -17,7 +17,9 @@ BANNER = r"""
  \___/|_| \_\_____| |____/|_| |_|\___/|_|   \__\___|_| |_|\___|_|
 
 Usage:
-    curl -X POST -d "url=<url>" {base_url}
+
+    curl -d'url=<url>' {base_url}
+    command | curl -F'url=<-' {base_url}
 """
 
 
