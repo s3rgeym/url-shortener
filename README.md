@@ -17,8 +17,8 @@ Code changes will take effect immediately.
 Create SHORT URL via Curl:
 
 ```bash
-$ curl -XPOST -d 'url=https://www.youtube.com/watch?v=capY9GLjVk8' localhost:8000
-http://localhost:8000/2p9FrNxptFpbhRR5ovpcGw
+$ curl -d'url=https://www.youtube.com/watch?v=capY9GLjVk8' localhost:8000
+http://localhost:8000/5ZTmyEZZW0~HPJnfptY9f
 ```
 
 | URL | Service |
@@ -27,6 +27,7 @@ http://localhost:8000/2p9FrNxptFpbhRR5ovpcGw
 | <http://localhost:8000/docs> | Documentation |
 | <http://localhost:5050/> | pgAdmin. Default credentials: `pgadmin4@pgadmin.org:admin` |
 
+![image](https://user-images.githubusercontent.com/12753171/278887688-8d1a7627-5349-44a8-b314-4fbae730cf59.png)
 ![image](https://user-images.githubusercontent.com/12753171/278843106-a24e55bd-5c6f-4b60-b1b9-d188e7562d3c.png)
 
 Add new dependency:
