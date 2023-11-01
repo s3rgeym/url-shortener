@@ -18,7 +18,7 @@ Create SHORT URL via Curl:
 
 ```bash
 $ curl -d'url=https://www.youtube.com/watch?v=capY9GLjVk8' localhost:8000
-http://localhost:8000/u/5ZTmyEZZW0~HPJnfptY9f
+http://localhost:8000/5ZTmyEZZW0~HPJnfptY9f
 ```
 
 | URL | Service |
