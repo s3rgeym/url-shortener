@@ -1,6 +1,7 @@
 import string
 from dataclasses import dataclass
 from functools import cached_property
+from uuid import UUID
 
 __all__: tuple[str, ...] = ("BaseConverter", "base36", "base58", "base62")
 
@@ -38,6 +39,12 @@ class BaseConverter:
         for i, c in enumerate(s, 1):
             rv += self.alphabet.find(c) * self.alphabet_len ** (sl - i)
         return rv
+
+    def encode_uuid(self, u: UUID) -> str:
+        return self.encode(u.int)
+
+    def decode_uuid(self, s: str) -> UUID:
+        return UUID(int=self.decode(s))
 
 
 # for i in (36, 62):
